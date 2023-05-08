@@ -58,7 +58,7 @@ const Login = () => {
 
   return (
     <div className="h-screen flex justify-center items-center">
-      <div className="w-10/12 flex justify-center items-center gap-10 flex-wrap md:w-10/12 gap-2 ">
+      <div className="w-10/12 flex justify-center items-center gap-10 flex-wrap md:w-10/12 md:gap-20 ">
         <Lottie animationData={musicAnimation} loop style={style} />
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold border-b-2 w-fit mx-auto mb-10 py-2">

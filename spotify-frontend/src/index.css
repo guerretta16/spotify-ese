@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    :root{
+        --color-main-base: 0, 0, 0;
+        --color-text-base: #ffffff;
+        --color-text-alter: #000000;
+        --color-text-ph: #525252;
+        --color-text-link: #86efac;
+        --color-bg-base: #15803d;
+        --color-bg-base-hover: #0c4822;
+        --color-bg-top: #ffffff;
+        --color-bg-card: #111827;
+        --color-bg-delete: #d32929;
+        --color-bg-delete-hover: #7f1d1d;
+        --color-bg-info: #2547e0;
+        --color-bg-info-hover: #1e3aba;
+    }
+
+}

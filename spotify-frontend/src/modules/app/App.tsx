@@ -5,7 +5,7 @@ import { Header } from "../../layouts/Header";
 
 function App() {
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-skin-main min-h-screen text-skin-base">
       <Routes>
         <Route path="/" element={<Login />} />
 

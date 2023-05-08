@@ -18,7 +18,7 @@ const AlbumCard = ({
   const user_id = useAppSelector((state) => state.persistedReducer.user.id);
 
   return (
-    <div className="bg-gray-900 py-5 rounded ">
+    <div className="bg-skin-card py-5 rounded-lg hover:bg-skin-card-hover transition">
       <div className="w-4/5 m-auto">
         <img className="rounded" src={album.image_url} alt={album.name} />
         <div className="flex flex-col justify-between my-5">
@@ -33,7 +33,7 @@ const AlbumCard = ({
       {!album.isSaved ? (
         <button
           onClick={() => registerFavoriteAlbum({ ...album, user_id: user_id })}
-          className="block mx-auto bg-green-900 p-2 rounded hover:bg-green-700 transition"
+          className="block mx-auto bg-skin-base p-2 rounded transition hover:bg-skin-base-hover"
         >
           Añadir a favoritos
         </button>
@@ -41,13 +41,13 @@ const AlbumCard = ({
         <div className="flex justify-center gap-2">
           <button
             onClick={() => deleteAlbum(album.id_album, user_id!)}
-            className="bg-red-900 p-2 rounded hover:bg-red-700 transition font-semibold"
+            className="bg-skin-delete p-2 rounded hover:bg-skin-delete-hover transition font-semibold"
           >
             Eliminar de favoritos
           </button>
           <button
             onClick={() => handleModal(album.id_album)}
-            className="bg-blue-900 p-2 rounded hover:bg-blue-700 transition font-semibold"
+            className="bg-skin-info p-2 rounded hover:bg-skin-info-hover transition font-semibold"
           >
             Info
           </button>

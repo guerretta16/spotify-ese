@@ -9,7 +9,7 @@ const LoginButton = () => {
 
   return (
     <button
-      className="bg-green-700 p-5 rounded text-xl font-semibold hover:bg-green-900 transition"
+      className="bg-skin-base p-5 rounded text-xl font-semibold hover:bg-skin-base-hover transition"
       onClick={handleClick}
     >
       Iniciar sesión

@@ -21,7 +21,7 @@ const TopInput = ({getAlbumes}: TopInputProps) => {
       <input
         onChange={handleChange}
         name="query"
-        className="w-3/4 md:w-3/6 rounded p-2 border-0 outline-none text-black"
+        className="w-3/4 md:w-3/6 rounded p-2 border-0 outline-none text-skin-alter bg-skin-top placeholder:text-skin-ph"
         type="text"
         placeholder="Busca álbumes..."
       />
