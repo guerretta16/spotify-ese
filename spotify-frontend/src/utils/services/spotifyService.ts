@@ -13,7 +13,11 @@ export const getCurrentUserData = async (access_token: string) => {
 export const getTopAlbumes = async (access_token: string) => {
   try {
     const instance = createInstance(access_token);
-    return await instance.get("/me/top/tracks");
+    return await instance.get("/me/top/tracks", {
+      params: {
+        limit: "30"
+      }
+    });
   } catch (error) {
     console.error(error);
   }
@@ -28,6 +32,7 @@ export const getSearchedAlbumes = async (
     const params = {
       type: "album",
       q: query,
+      limit: "30"
     };
     return await instance.get("/search", { params: params });
   } catch (error) {
