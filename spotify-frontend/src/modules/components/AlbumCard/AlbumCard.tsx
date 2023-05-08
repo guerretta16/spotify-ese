@@ -1,5 +1,4 @@
 import { AlbumRef } from "../../../utils/interfaces";
-import moment from "moment";
 import { useAppSelector } from "../../../app/hooks";
 
 interface AlbumCardProp {
@@ -26,7 +25,7 @@ const AlbumCard = ({
             {album.name}
           </h2>
           <small className="text-base">
-            {moment(album.release_date).format("YYYY")} · {album.artists}
+            {album.release_date} · {album.artists}
           </small>
         </div>
       </div>

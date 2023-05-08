@@ -55,7 +55,7 @@ export const useAlbumHook = (access_token: string) => {
                   release_date: moment(
                     item.album.release_date,
                     "YYYY-MM-DD"
-                  ).format("DD MMMM YYYY"),
+                  ).format("YYYY"),
                   artists: item.album.artists
                     .map((artist: ArtistInter) => artist.name)
                     .toString(),
@@ -87,7 +87,7 @@ export const useAlbumHook = (access_token: string) => {
                   image_url: item.images[1].url,
                   name: item.name,
                   release_date: moment(item.release_date, "YYYY-MM-DD").format(
-                    "DD MMMM YYYY"
+                    "YYYY"
                   ),
                   artists: item.artists
                     .map((artist: ArtistInter) => artist.name)
