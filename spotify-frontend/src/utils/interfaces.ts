@@ -1,6 +1,7 @@
 export interface AuthState {
     access_token?: string,
-    refresh_token?: string
+    refresh_token?: string,
+    isLoading?: boolean
 }
 
 export interface UserState {

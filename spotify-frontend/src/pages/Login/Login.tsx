@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchAuth } from "../../app/features/auth/spotifyToken";
-import { LoginButton } from "../../modules/components";
+import { LoginButton, Spinner } from "../../modules/components";
 import Lottie from "lottie-react";
 import musicAnimation from "../../assets/lottie/music.json";
 
@@ -15,6 +15,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const refreshToken = useAppSelector((state) => state.persistedReducer.spotifyToken.access_token);
   const access_token = useAppSelector(state => state.persistedReducer.spotifyToken.access_token);
+  const isLoading = useAppSelector((state) => state.persistedReducer.spotifyToken.isLoading);
 
   const authFunction = (spotifyCode: string) => {
     if (refreshToken !== "") {
@@ -50,6 +51,10 @@ const Login = () => {
   const style = {
     height: 400,
   };
+
+  if(isLoading){
+    return <Spinner />
+  }
 
   return (
     <div className="h-screen flex justify-center items-center">

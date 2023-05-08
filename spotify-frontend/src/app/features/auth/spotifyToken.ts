@@ -11,6 +11,7 @@ interface Props {
 const initialState: AuthState = {
   access_token: "",
   refresh_token: "",
+  isLoading: false,
 };
 
 export const fetchAuth = createAsyncThunk(
@@ -27,17 +28,30 @@ export const spotifyTokenSlice = createSlice({
   reducers: {
     reset (state) {
       state.access_token = "",
-      state.refresh_token = ""
+      state.refresh_token = "",
+      state.isLoading = false
     }
   },
   extraReducers(builder) {
+    builder.addCase(
+      fetchAuth.pending, (state) => {
+        state.isLoading = true
+      }
+    ),
     builder.addCase(
       fetchAuth.fulfilled,
       (state, action: PayloadAction<AuthState>) => {
         state.access_token = action.payload.access_token;
         state.refresh_token = action.payload.refresh_token;
+        state.isLoading = false
       }
-    );
+    ),
+    builder.addCase(
+      fetchAuth.rejected,
+      (state) => {
+        state.isLoading = false
+      }
+    )
   },
 });
 
