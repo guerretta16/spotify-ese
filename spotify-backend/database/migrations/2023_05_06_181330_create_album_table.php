@@ -11,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album', function (Blueprint $table) {
-            $table->string("id_album")->nullable(false)->unique();
-            $table->string("album_type", 50)->nullable(false);
-            $table->integer("total_tracks")->nullable(false);
-            $table->string("url", 255)->nullable(false);
-            $table->string("image_url", 255)->nullable(false);
-            $table->string("name", 150)->nullable(false);
-            $table->date("release_date")->nullable(false);
-            $table->string("artists")->nullable(false);
+        Schema::create('albums', function (Blueprint $table) {
+            $table->string("id")->primary();
+            $table->string("album_type", 50);
+            $table->integer("total_tracks");
+            $table->text("external_urls");
+            $table->text("images");
+            $table->string("name", 150);
+            $table->date("release_date");
+            $table->text("artists");
             $table->timestamps();
-            $table->primary("id_album");
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('album');
+        Schema::dropIfExists('albums');
     }
 };

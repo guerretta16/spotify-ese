@@ -1,5 +1,4 @@
 import axios from "axios";
-import { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI } from "../globalParams";
 import { SearchParams, RequiredParams } from "../interfaces";
 
 interface Props {
@@ -13,9 +12,9 @@ export const authTokenService = async ({requiredParam, grant_type} : Props) => {
         const params = {
             ...requiredParam,
             grant_type: grant_type,
-            redirect_uri: REDIRECT_URI,
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
+            redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+            client_id: import.meta.env.VITE_CLIENT_ID,
+            client_secret: import.meta.env.VITE_CLIENT_SECRET,
         }
     
         const searchParams = Object.keys(params).map((key) => encodeURIComponent(key)+"="+encodeURIComponent(params[key as keyof SearchParams]!)).join('&');
@@ -31,9 +30,7 @@ export const authTokenService = async ({requiredParam, grant_type} : Props) => {
     
         return response.data;
     }
-    catch(err){
-
-    }
+    catch(err){ /* empty */ }
     
 }
 

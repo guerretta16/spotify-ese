@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album_favorito', function (Blueprint $table) {
+        Schema::create('favorite_albums', function (Blueprint $table) {
             $table->id();
             $table->string("id_album")->nullable(false);
-            $table->string("user_id")->nullable(false);
+            $table->string("id_user")->nullable(false);
             $table->timestamps();
-            $table->foreign("id_album")->references("id_album")->on("album");
+            $table->foreign("id_album")->references("id")->on("albums");
+            $table->foreign("id_user")->references("id")->on("users");
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('album_favorito');
+        Schema::dropIfExists('favorite_albums');
     }
 };

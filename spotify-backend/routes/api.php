@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\CreateAlbumFavoritoController;
-use App\Http\Controllers\DeleteAlbumFavoritoController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CreateFavoriteAlbumController;
+use App\Http\Controllers\DeleteFavoriteAlbumController;
 use App\Http\Controllers\GetAlbumController;
-use App\Http\Controllers\GetAlbumFavoritoController;
+use App\Http\Controllers\GetFavoriteAlbumsController;
+use App\Http\Controllers\GetFavoriteAlbumsIds;
+use App\Http\Controllers\GetTokenController;
+use App\Http\Controllers\TestController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +20,15 @@ use App\Http\Controllers\GetAlbumFavoritoController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::get('/register', GetTokenController::class)->middleware('spotify');
+Route::get('/test', TestController::class);
+
+Route::middleware('jwt')->group(function (){
+    Route::get('/album/{id_album}', GetAlbumController::class);
+    Route::post('/favorite-album', CreateFavoriteAlbumController::class);
+    Route::get('/favorite-album', GetFavoriteAlbumsController::class);
+    Route::delete('/favorite-album/{id_album}', DeleteFavoriteAlbumController::class);
+    Route::get('/favorite-album-ids', GetFavoriteAlbumsIds::class);
 });
 
-Route::middleware('spotifyCheck')->group(function () {
-    Route::get('/album/{id_album}', GetAlbumController::class);
-    Route::post('/album-favorito', CreateAlbumFavoritoController::class);
-    Route::get('/album-favorito/{user_id}', GetAlbumFavoritoController::class);
-    Route::delete('/album-favorito/{id_album}/{user_id}', DeleteAlbumFavoritoController::class);
-});

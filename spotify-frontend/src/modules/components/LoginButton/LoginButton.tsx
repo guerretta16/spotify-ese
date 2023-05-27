@@ -1,7 +1,6 @@
-import { CLIENT_ID, REDIRECT_URI, SCOPE } from "../../../utils/globalParams";
 
 const LoginButton = () => {
-  const spotifyAuthURI = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPE}`;
+  const spotifyAuthURI = `https://accounts.spotify.com/authorize?response_type=code&client_id=${import.meta.env.VITE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&scope=${import.meta.env.VITE_SCOPE}`;
 
   const handleClick = () => {
     window.location.replace(spotifyAuthURI);

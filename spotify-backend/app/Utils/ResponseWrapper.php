@@ -3,24 +3,24 @@
 namespace App\Utils;
 
 use Illuminate\Http\Request;
-use App\Models\Album_Favorito;
+use App\Models\FavoriteAlbum_;
 use Carbon\Carbon;
 
 define('SUCCESS', 0);
 define('ERROR', 1);
 
-class ResponseWrapper 
+class ResponseWrapper
 {
     public static function messageDescriptionError($typeMessage, $descriptionMessage, $data = []) {
         $codeError = SUCCESS;
-        if($typeMessage == "Error") {
+        if($typeMessage === "Error") {
             $codeError = ERROR;
         }
-        if(count($data) == 0){
+        else if(count($data) === 0){
             return  [
                 "codeError" => $codeError,
                 "message" => $typeMessage,
-                "descripcionMessage" => $descriptionMessage,
+                "descriptionMessage" => $descriptionMessage,
                 "dateMessage" => Carbon::now()
             ];
         }
@@ -29,43 +29,43 @@ class ResponseWrapper
                 "data" => $data,
                 "codeError" => $codeError,
                 "message" => $typeMessage,
-                "descripcionMessage" => $descriptionMessage,
+                "descriptionMessage" => $descriptionMessage,
                 "dateMessage" => Carbon::now()
             ];
         }
     }
 
-    public static function SaveResponseMessage($responseBool)
+    public static function SaveResponseMessage($responseBool): ?array
     {
         if($responseBool) {
-            return ResponseWrapper::messageDescriptionError("Ok", "Registro guardado exitosamente");
-        } else {
-            return ResponseWrapper::messageDescriptionError("Error", "No se ha podido guardar el registro");
+            return self::messageDescriptionError("Ok", "Saved Successfully!!!");
         }
+
+        return self::messageDescriptionError("Error", "Ops, it can´t be saved!");
     }
 
-    public static function DeleteResponseMessage($responseBool)
+    public static function DeleteResponseMessage($responseBool): ?array
     {
         if($responseBool) {
-            return ResponseWrapper::messageDescriptionError("Ok", "Item eliminado exitosamente");
-        } else {
-            return ResponseWrapper::messageDescriptionError("Error", "No se ha podido eliminar el item");
+            return self::messageDescriptionError("Ok", "Item deleted successfully");
         }
+
+        return self::messageDescriptionError("Error", "Ops, it can´t be deleted!");
     }
 
     public static function ExistResponseMessage($responseBool)
     {
         if($responseBool) {
-            return ResponseWrapper::messageDescriptionError("Ok", "El registro ya existe");
+            return self::messageDescriptionError("Ok", "This item exists!!!");
         }
     }
 
-    public static function GetResponseWrapper($responseBool, $data){
+    public static function GetResponseWrapper($responseBool, $data): ?array
+    {
         if($responseBool){
-            return ResponseWrapper::messageDescriptionError("Ok", "Datos obtenidos correctamente", $data);
+            return self::messageDescriptionError("Ok", "Successfully obtained data", $data);
         }
-        else{
-            return ResponseWrapper::messageDescriptionError("Error", "Modelo sin datos almacenados");
-        }    
+
+        return self::messageDescriptionError("Error", "Model with no stored data");
     }
 }
